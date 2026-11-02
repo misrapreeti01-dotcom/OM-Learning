@@ -1,0 +1,1266 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="hCTbpgYO8c9tyyqyoZ_hKw2bVB4DAk-1-Mw26OkcibY" />
+    <meta name="msvalidate.01" content="975CE7B47C793AA201EE8177DF014252" />
+
+    <title>OM-Help-Smart Learning </title>
+    <style>
+    
+        html, body { 
+            background-color: rgb(28, 29, 66);
+            height: 100%;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        body {
+            background-color: rgb(38, 25, 73);
+            min-width: 320px;
+            min-height: 100vh;
+            display: flex;
+        }
+
+       
+
+        .new-chat {
+            display: flex;
+            text-align: left;
+            color: rgb(212, 209, 221);
+            padding: 12px 14px;
+            margin: 12px 0;
+            justify-content: space-between;
+            transition: 0.2s ease;
+            cursor: pointer;
+            border: 1px solid rgba(212, 209, 221, 0.3);
+            border-radius: 4px;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            color: aqua;
+            gap: 8px;
+        }
+
+        .title {
+            cursor: pointer;
+            padding: 4px 0;
+        }
+        
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            padding: 20px;
+            gap: 20px;
+          min-width: 0;
+          min-height: 100%;
+          box-sizing: border-box;
+        }
+
+        .chat-panel {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          min-width: 0;
+        }
+
+        .chat-scroll {
+            flex: 1;
+            overflow-y: auto;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 10px;
+            margin-bottom: 10px;
+            min-height: 200px;
+        }
+
+        .message-row {
+            margin: 8px 0;
+            display: flex;
+        }
+        .message-row.bot { justify-content: flex-start; }
+        .message-row.user { justify-content: flex-end; }
+        .bubble {
+            padding: 10px 14px;
+            border-radius: 8px;
+            max-width: 70%;
+            max-height: 50%;
+        }
+        .bot .bubble { background: #3b3b5c; }
+        .user .bubble { background: #5a5a8a; }
+
+        .prompts {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .chip {
+            background: rgba(255,255,255,0.1);
+            padding: 6px 12px;
+            border-radius: 16px;
+            cursor: pointer;
+        }
+
+        .composer-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        .composer-box textarea {
+            flex: 1;
+            resize: none;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .panel {
+          flex: 0 0 250px;
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 8px;
+          box-sizing: border-box;
+          overflow-y: auto;
+        }
+
+        .subject-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            margin: 0;
+            max-width: 100%;
+            text-align: center;
+            color: aqua;
+            background-color: transparent;
+        }
+
+          .subject-grid > div {
+            margin: 0;
+            padding: 10px 8px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 6px;
+            background: rgba(255,255,255,0.06);
+          }
+
+          .subject-grid a {
+            color: aqua;
+            text-decoration: none;
+            display: block;
+        }
+
+          .subject-grid > div:hover {
+            background: rgba(125, 211, 252, 0.16);
+          }
+
+          @media (max-width: 760px) {
+            body {
+              display: block;
+            }
+
+            .slidebar {
+              width: 100%;
+              min-height: auto;
+            }
+
+            .chat-area {
+              min-height: auto;
+              flex-direction: column;
+            }
+
+            .panel {
+              flex-basis: auto;
+              max-height: 50%;
+            }
+          }
+        
+      .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      font-weight: 800;
+      color: white;
+      box-shadow: 0 12px 22px rgba(125, 211, 252, 0.38);
+    }
+
+    .header {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      background: linear-gradient(90deg, #edf7ff, #d8cbff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+   
+     .math{
+        font-weight: bold;
+        color: transparent;
+        font-size: larger;
+        margin: 5%;
+        padding: 5%;
+        border-radius: 12px;
+    }
+    
+     .science{
+        font-weight: bold;
+        color: transparent;
+        font-size: larger;
+        margin: 5%;
+        padding: 5%;
+    }
+
+     .english{
+        font-weight: bold;
+        color: transparent;
+        font-size: larger;
+        margin: 5%;
+        padding: 5%;
+    }
+
+     .coding{
+        font-weight: bold;
+        color: transparent;
+        font-size: larger;
+        margin: 5%;
+        padding: 5%;
+    }
+
+     .gk{
+        font-weight: bold;
+        color: transparent;
+        font-size: larger;
+        margin: 5%;
+        padding: 5%;
+    }
+
+     .history{
+         
+        font-weight: bold;
+        color: transparent;
+        font-size: larger;
+        margin: 5%;
+        padding: 5%;
+    }
+
+     @media (max-width: 760px) {
+       html,
+       body {
+         height: auto;
+         min-height: 100%;
+       }
+
+       body {
+         width: 100%;
+         overflow-x: hidden;
+       }
+
+       .slidebar {
+         display: grid;
+         grid-template-columns: 38px minmax(0, 1fr) auto;
+         align-items: center;
+         gap: 12px 10px;
+         padding: 16px;
+         background: rgba(15, 12, 42, 0.55);
+         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+       }
+
+       .brand-mark {
+         background: linear-gradient(135deg, #7dd3fc, #a78bfa);
+       }
+
+       .header {
+         min-width: 0;
+         font-size: 24px;
+       }
+
+       .new-chat {
+         margin: 0;
+         padding: 9px 11px;
+         gap: 8px;
+         white-space: nowrap;
+       }
+
+       .nav {
+         grid-column: 1 / -1;
+         flex-direction: row;
+         gap: 8px;
+         overflow-x: auto;
+         padding-bottom: 2px;
+         scrollbar-width: none;
+       }
+
+       .nav::-webkit-scrollbar {
+         display: none;
+       }
+
+       .title {
+         flex: 0 0 auto;
+         padding: 8px 12px;
+         border: 1px solid rgba(255, 255, 255, 0.12);
+         border-radius: 999px;
+         background: rgba(255, 255, 255, 0.07);
+         color: #e8e7ff;
+       }
+
+       .card {
+         display: none;
+       }
+
+       .chat-area {
+         min-height: auto;
+         padding: 14px;
+         gap: 16px;
+       }
+
+       .chat-panel {
+         min-height: 68svh;
+         justify-content: flex-start;
+       }
+
+       .main,
+       .text-box {
+         display: none;
+       }
+
+       .chat-scroll {
+         flex: 1;
+         min-height: 220px;
+         max-height: 52svh;
+         padding: 12px;
+         border-color: rgba(255, 255, 255, 0.12);
+         border-radius: 12px;
+         background: rgba(15, 12, 42, 0.28);
+       }
+
+       .bubble {
+         max-width: 88%;
+         max-height: none;
+         line-height: 1.5;
+         overflow-wrap: anywhere;
+       }
+
+       .prompts {
+         gap: 8px;
+         overflow-x: auto;
+         padding-bottom: 4px;
+         scrollbar-width: none;
+       }
+
+       .prompts::-webkit-scrollbar {
+         display: none;
+       }
+
+       .chip {
+         flex: 0 0 auto;
+         padding: 8px 12px;
+         font-size: 0.85rem;
+         white-space: nowrap;
+       }
+
+       .composer-box {
+         align-items: stretch;
+       }
+
+       .composer-box textarea {
+         min-width: 0;
+         min-height: 48px;
+         border: 1px solid rgba(255, 255, 255, 0.18);
+         border-radius: 12px;
+         background: rgba(255, 255, 255, 0.96);
+         font-size: 16px;
+       }
+
+       .send-btn {
+         min-width: 48px;
+         border: 0;
+         border-radius: 12px;
+         background: #8b7cf6;
+         color: white;
+         font-size: 18px;
+       }
+
+       .panel {
+         flex-basis: auto;
+         max-height: none;
+         padding: 16px;
+         border: 1px solid rgba(255, 255, 255, 0.08);
+       }
+
+       .panel h3 {
+         margin-top: 0;
+         font-size: 1.1rem;
+       }
+
+       .subject-grid {
+         display: grid;
+         grid-template-columns: repeat(2, minmax(0, 1fr));
+         gap: 10px;
+         padding: 0;
+       }
+
+       .subject-grid > div {
+         min-width: 0;
+         margin: 0;
+         padding: 14px 10px;
+         border-radius: 10px;
+         font-size: 1rem;
+       }
+
+       .subject-grid a {
+         display: flex;
+         min-height: 24px;
+         align-items: center;
+         justify-content: center;
+         overflow-wrap: anywhere;
+       }
+     }
+
+
+     </style>
+</head>
+<body>
+    <aside class="slidebar"> 
+        <div class="brand-mark">O</div>
+        <div class="header">OM-Help</div>
+    
+        <div class="new-chat" id="newChatBtn">
+            <span>New chat</span>
+            <span>✦</span>
+        </div>
+    
+        <nav class="nav">
+            <div class="title" data-subject="maths">Maths</div>
+            <div class="title" data-subject="science">Science</div>
+            <div class="title" data-subject="coding">Coding</div>
+            <div class="title" data-subject="history">History</div>
+            <div class="title" data-subject="civics">Civics</div>
+            <div class="title" data-subject="english">English</div>
+        </nav> 
+
+        <div class="card">
+            <h4>Quick Learn</h4>
+            <p>Algebra, Geometry, Mathematics and much more..</p>
+        </div>
+    </aside>
+
+    <div class="chat-area">
+        <section class="chat-panel">
+            <main class="main"><span class="dot"></span></main>    
+            <div class="text-box"></div>
+            <div class="chat-scroll" id="chatScroll"></div>
+            
+            <div class="prompts">
+                <div class="chip" data-prompt="Who are you">Who are you</div>
+                <div class="chip" data-prompt="Explain Gravity">Explain Gravity</div>
+                <div class="chip" data-prompt="Mitochondria">Mitochondria</div>
+            </div>
+
+            <div class="composer">
+                <div class="composer-box">
+                    <textarea id="chatInput" placeholder="Ask something..."></textarea>
+                    <button class="send-btn" id="sendBtn">➤</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="panel">
+            <h3>Extra Learning With OM-Help</h3>
+            <div class="subject-grid">
+                <div class="math" data-subject="math"><a href="https://misrapreeti01-dotcom.github.io/Calculator_OMgpt/">Math</a></div>
+                <div class="science" data-subject="science"><a href="https://misrapreeti01-dotcom.github.io/Chemistry_OMgpt/">Science</a></div>
+                <div class="history" data-subject="history"><a href="https://misrapreeti01-dotcom.github.io/History_OMgpt/">History</a></div>
+                <div class="english" data-subject="english"><a href="https://misrapreeti01-dotcom.github.io/English_OMgpt/">English</a></div>
+                <div class="gk" data-subject="gk"><a href=" https://misrapreeti01-dotcom.github.io/GK_OMgpt/">GK</a></div>
+                <div class="scientists" data-subject="know your scientists"><a href="https://misrapreeti01-dotcom.github.io/AlbertEinstein_OMgpt/">Know Your Scientists</a></div>
+                <div class="coding" data-subject="coding"><a href="https://misrapreeti01-dotcom.github.io/CODING_OMgpt/">Coding</a></div>
+                <div class="quiz" data-subject="quiz"><a href="https://misrapreeti01-dotcom.github.io/Quiz-OMgpt/">Quiz</a></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    const chatInput = document.getElementById("chatInput");
+    const chatScroll = document.getElementById("chatScroll");
+    const sendBtn = document.getElementById("sendBtn");
+    const newChatBtn = document.getElementById("newChatBtn");
+
+    function addMessage(text, sender, isHtml = false) {
+      const row = document.createElement("div");
+      row.className = `message-row ${sender}`;
+
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      if (isHtml) bubble.innerHTML = text;
+      else bubble.textContent = text;
+
+      row.appendChild(bubble);
+      chatScroll.appendChild(row);
+      chatScroll.scrollTop = chatScroll.scrollHeight;
+    }
+
+    function resetChat() {
+      chatScroll.innerHTML = "";
+      addMessage("Hello! I’m OMgpt. Ask me anything about math, science, history, English, coding, biology, geography, technology, or general knowledge.", "bot");
+    }
+
+    function replyMap(input) {
+      const text = input.toLowerCase().trim();
+
+      if (!text) return "Write a question and I’ll help.";
+
+      const knowledge = [
+        ["hello", "hi", "hey"], "Hi! I can explain school topics, science, maths, history, coding, geography, and GK in simple language. I am founded by Ojas Mishra. Ask me anything you want to learn.",
+        ["who are you", "what is omgpt", "what is omgpt"], "OMgpt is a smart study assistant designed to explain concepts clearly and make learning easier.",
+        ["gravity"], "Gravity is the force that pulls objects toward each other. It keeps us on the ground and keeps the Moon orbiting Earth.",
+        ["math", "mathematics", "algebra", "equation", "geometry"], "Algebra uses symbols and equations to solve problems. Example: 2x + 3 = 11 means x = 4. Geometry studies shapes, angles, and space.",
+        ["pythagoras", "pythagorean theorem"], "Pythagoras theorem says in a right triangle, a² + b² = c². Here c is the longest side, called the hypotenuse.",
+        ["fraction", "fractions", "percentage"], "A fraction shows a part of a whole. For example, 3/4 means three out of four equal parts. A percentage is a fraction out of 100.",
+        ["speed of light", "light speed"], "The speed of light in a vacuum is about 299,792,458 m/s, which is roughly 3 × 10^8 m/s.",
+        ["force"], "Force is any push or pull that changes an object’s motion or shape. It is measured in newtons (N).",
+        ["energy"], "Energy is the ability to do work. It can be heat, light, sound, electrical, kinetic, potential, or chemical energy.",
+        ["motion", "newton's laws", "laws of motion"], "Newton’s laws of motion explain how objects move. The first law says an object stays at rest or in motion unless acted on by force. The second law connects force, mass, and acceleration. The third law says each action has an equal and opposite reaction.",
+        ["photosynthesis"], "Photosynthesis is the process by which green plants use sunlight, water, and carbon dioxide to make food and release oxygen.",
+        ["science"], "Science is the study of the natural world. It includes physics, chemistry, biology, earth science, and astronomy.",
+        ["biology", "cell", "living thing"], "Biology is the study of living things. A cell is the basic unit of life, and cells work together to form tissues, organs, and organisms.",
+        ["mitochondria"], "Mitochondria are known as the powerhouse of the cell because they break down food to release energy for the cell.",
+        ["dna", "genetics"], "DNA stores genetic instructions in living organisms. Genetics studies how traits are inherited and passed from parents to offspring.",
+        ["chemistry", "atom", "molecule", "periodic table"], "Chemistry studies matter and how substances react. Atoms are tiny building blocks, and molecules are groups of atoms.",
+        ["water cycle"], "The water cycle is the continuous process of evaporation, condensation, precipitation, and collection of water in nature.",
+        ["evaporation"], "Evaporation is when a liquid changes into gas at its surface, usually due to heat or sunlight.",
+        ["friction"], "Friction is the force that opposes motion between two surfaces in contact. It can slow movement or help us grip surfaces.",
+        ["planet", "solar system", "moon", "asteroid"], "The solar system contains the Sun and all objects orbiting it, including planets, moons, asteroids, and comets. The eight planets are Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.",
+        ["earth", "earth atmosphere", "atmosphere"], "Earth is the third planet from the Sun. It has air, water, and life. The atmosphere is a layer of gases that surrounds Earth and protects living things.",
+        ["respiration"], "Respiration is the process by which living organisms take in oxygen and release carbon dioxide while producing energy.",
+        ["ecosystem"], "An ecosystem is a community of living organisms and their physical environment interacting together, such as a forest, pond, or desert.",
+        ["mammal"], "A mammal is an animal with hair or fur that usually gives birth to live young and feeds them milk.",
+        ["acid", "base"], "An acid turns blue litmus red and often tastes sour. A base turns red litmus blue and reacts with acids to form salt and water.",
+        ["magnet", "magnetism"], "Magnetism is a force caused by magnetic fields. Magnets attract some materials like iron and repel others in certain conditions.",
+        ["latitude", "longitude"], "Latitude is the distance north or south of the equator. Longitude is the distance east or west of the prime meridian.",
+        ["prime meridian"], "The prime meridian is the 0° longitude line that passes through Greenwich, England.",
+        ["volcano", "earthquake"], "An earthquake is a sudden shaking of the ground caused by movement of tectonic plates. A volcano is a place where magma, gas, and ash escape from inside Earth.",
+        ["biodiversity"], "Biodiversity means the variety of living organisms in a place, including plants, animals, fungi, and microorganisms.",
+        ["english", "grammar", "noun", "verb", "adjective", "tense"], "Grammar is the set of rules for forming correct sentences. Important parts include nouns, pronouns, verbs, adjectives, adverbs, and tenses.",
+        ["essay", "paragraph"], "A paragraph is a group of sentences about one main idea. An essay is a longer piece of writing made up of organized paragraphs.",
+        ["poetry", "poem"], "Poetry is a form of writing that uses language creatively, often with rhythm, imagery, and sound patterns.",
+        ["literature"], "Literature includes written works such as poetry, prose, novels, plays, and essays that reflect human thoughts and experiences.",
+        ["history"], "History is the study of the past. It includes events, people, empires, wars, inventions, and cultural change.",
+        ["ashoka"], "Ashoka was the Mauryan emperor who expanded his empire and later promoted peace, justice, and Buddhism after the Kalinga war.",
+        ["mahatma gandhi", "gandhi", "father of nation"], "Mahatma Gandhi is widely known as the Father of the Nation in India due to his leadership in the struggle for independence.",
+        ["independence", "freedom struggle"], "India’s independence movement was led by many freedom fighters, including Mahatma Gandhi, Jawaharlal Nehru, and Subhas Chandra Bose.",
+        ["taj mahal", "red fort", "qutub minar"], "The Taj Mahal is a famous marble monument in Agra. The Red Fort is in Delhi, and Qutb Minar is another famous historical monument in India.",
+        ["ancient india", "harappa", "mohenjo daro"], "The Indus Valley Civilization, also called the Harappan Civilization, was one of the earliest urban civilizations in South Asia.",
+        ["rome", "roman empire"], "The Roman Empire was a powerful empire in Europe and the Mediterranean that greatly influenced law, architecture, and government.",
+        ["renaissance"], "The Renaissance was a cultural movement in Europe that emphasized art, learning, and human creativity.",
+        ["industrial revolution"], "The Industrial Revolution was a major historical shift in which machines began to replace many manual jobs and transform industry and society.",
+        ["world war 1", "ww1", "world war 2", "ww2"], "World War I and World War II were global conflicts that caused massive destruction and reshaped world politics.",
+        ["democracy"], "Democracy is a form of government in which citizens elect representatives and have rights protected by law.",
+        ["constitution"], "A constitution is the supreme law of a country that defines government powers, rights, and duties.",
+        ["india", "indian"], "India is a country in South Asia. It is known for its diversity, ancient civilization, democracy, and contributions to science and mathematics.",
+        ["capital of india", "new delhi"], "The capital of India is New Delhi.",
+        ["capital of japan", "tokyo"], "The capital of Japan is Tokyo.",
+        ["capital of france", "paris"], "The capital of France is Paris.",
+        ["capital of china", "beijing"], "The capital of China is Beijing.",
+        ["capital of nepal", "kathmandu"], "The capital of Nepal is Kathmandu.",
+        ["capital of england", "london"], "The capital of England is London, and the capital of the United Kingdom is also London.",
+        ["capital of usa", "washington dc"], "The capital of the United States is Washington, D.C.",
+        ["geography"], "Geography is the study of Earth, its landforms, climate, countries, oceans, and people. It helps us understand places and the environment.",
+        ["continent", "continents"], "There are seven continents: Asia, Africa, North America, South America, Europe, Australia, and Antarctica.",
+        ["ocean"], "The five oceans are the Pacific, Atlantic, Indian, Southern, and Arctic Oceans.",
+        ["rivers", "river"], "Major rivers include the Nile, Amazon, Ganga, Yangtze, and Mississippi. Rivers are important for water, transport, and agriculture.",
+        ["mountain", "mountains"], "Mountains are elevated landforms. The highest mountain above sea level is Mount Everest.",
+        ["climate"], "Climate is the usual weather pattern of a place over a long period of time.",
+        ["isro"], "ISRO is India’s space research organization. It has launched satellites and carried out missions such as Chandrayaan and Mangalyaan.",
+        ["space", "astronomy"], "Astronomy is the study of stars, planets, galaxies, and the universe. Space exploration helps us understand the cosmos.",
+        ["moon landing"], "The Apollo moon landings showed that humans could travel to the Moon. The first Moon landing was in 1969.",
+        ["saturn", "jupiter", "venus", "mars"], "Jupiter is the largest planet. Saturn is famous for its rings. Mars is called the Red Planet. Venus is known for its dense atmosphere.",
+        ["coding", "programming", "computer science", "variable", "function", "loop", "recursion"], "Coding means writing instructions for a computer. Variables store data, functions perform tasks, and loops repeat actions.",
+        ["algorithm"], "An algorithm is a step-by-step method to solve a problem. It is central to computer science.",
+        ["binary"], "Binary is a number system using only 0 and 1, which computers use to store and process data.",
+        ["html", "css", "javascript", "java", "python"], "HTML structures a webpage, CSS styles it, and JavaScript makes it interactive. Python and Java are popular programming languages used for many applications.",
+        ["data type", "integer", "string"], "A data type tells a computer what kind of value a variable stores. Examples include integers, strings, booleans, and floats.",
+        ["api"], "An API is an application programming interface that lets different software systems communicate with each other.",
+        ["database"], "A database is an organized collection of data that can be stored, searched, and updated efficiently.",
+        ["artificial intelligence", "ai"], "Artificial intelligence is the field of creating machines that can perform tasks that usually require human intelligence, such as learning, reasoning, and decision-making.",
+        ["machine learning"], "Machine learning is a type of AI where systems learn patterns from data and improve over time without being explicitly programmed for every step.",
+        ["deep learning"], "Deep learning is a form of machine learning using layered neural networks inspired by the human brain.",
+        ["cloud computing"], "Cloud computing means using remote servers over the internet to store, process, and manage data instead of local computers.",
+        ["cybersecurity"], "Cybersecurity is the practice of protecting devices, networks, and data from attacks or unauthorized access.",
+        ["world geography"], "World geography includes the study of continents, countries, landforms, climates, natural resources, and population patterns.",
+        ["human body"], "The human body is made of organs and systems such as the nervous system, circulatory system, digestive system, and respiratory system.",
+        ["heart"], "The heart is a muscular organ that pumps blood throughout the body.",
+        ["brain"], "The brain is the control center of the body, responsible for thinking, memory, coordination, and many vital functions.",
+        ["lungs"], "The lungs are organs that help us breathe by taking in oxygen and releasing carbon dioxide.",
+        ["digestive system"], "The digestive system breaks food down into nutrients that the body can absorb and use as energy.",
+        ["nervous system"], "The nervous system includes the brain, spinal cord, and nerves. It helps us think, feel, and respond to the world.",
+        ["skeletal system"], "The skeletal system provides structure, support, and protection for the body and helps in movement.",
+        ["muscular system"], "The muscular system allows movement, supports posture, and helps the body perform physical work.",
+        ["circulatory system"], "The circulatory system transports blood, oxygen, nutrients, and waste throughout the body.",
+        ["photosphere"], "The photosphere is the visible surface of the Sun.",
+        ["galaxy"], "A galaxy is a huge system of stars, gas, dust, and dark matter held together by gravity. The Milky Way is our galaxy.",
+        ["black hole"], "A black hole is a region in space where gravity is so strong that even light cannot escape from it.",
+        ["mars rover"], "Mars rovers are robotic vehicles sent to explore the surface of Mars and collect data about the planet.",
+        ["current affairs"], "Current affairs are recent events in politics, science, technology, society, the environment, and sport.",
+        ["g20"], "The G20 is a group of the world’s major economies that discusses global economic and political issues.",
+        ["climate change"], "Climate change is the long-term shift in Earth’s climate caused mainly by human activities such as burning fossil fuels.",
+        ["global warming"], "Global warming is the rise in Earth’s average temperature largely caused by greenhouse gases such as carbon dioxide and methane.",
+        ["green house effect"], "The greenhouse effect is the trapping of heat by gases in the atmosphere, which keeps Earth warm enough for life.",
+        ["biodiversity loss"], "Biodiversity loss happens when species become extinct or their populations shrink dramatically due to habitat loss, pollution, and climate change.",
+        ["food chain"], "A food chain shows how energy passes from producers to consumers in ecosystems. Example: grass → grasshopper → frog → snake → eagle.",
+        ["producer", "consumer", "decomposer"], "Producers make their own food through photosynthesis, consumers eat other organisms, and decomposers break down dead matter.",
+        ["ecosystem"], "An ecosystem is a community of living organisms interacting with each other and their environment.",
+        ["crop rotation"], "Crop rotation is the practice of growing different crops in the same field in different seasons to improve soil health and reduce pests.",
+        ["fertilizer"], "A fertilizer is a substance added to soil to provide nutrients needed for plant growth.",
+        ["pesticide"], "A pesticide is a chemical used to kill pests such as insects, weeds, or fungi that damage crops.",
+        ["environment"], "The environment includes all natural and living things around us, such as air, water, soil, plants, and animals.",
+        ["renewable energy"], "Renewable energy comes from sources that are naturally replenished, such as solar, wind, hydro, and geothermal energy.",
+        ["solar energy"], "Solar energy is power obtained from sunlight using solar panels or solar thermal systems.",
+        ["wind energy"], "Wind energy uses wind turbines to convert moving air into electricity.",
+        ["hydroelectric power"], "Hydroelectric power uses flowing or falling water to generate electricity.",
+        ["fossil fuel"], "Fossil fuels such as coal, oil, and natural gas are formed from ancient plants and animals and are non-renewable.",
+        ["nuclear energy"], "Nuclear energy uses the energy released during nuclear reactions, usually in reactors, to generate electricity.",
+        ["sports"], "Sports are organized physical activities or games that involve competition, skill, and fitness.",
+        ["cricket"], "Cricket is a bat-and-ball sport popular in many countries, especially India, England, Australia, and Pakistan.",
+        ["football"], "Football, or soccer, is a team sport played between two teams of eleven players using a ball and goals.",
+        ["hockey"], "Hockey is a fast team sport played on field or ice, where players use sticks to hit a ball or puck.",
+        ["olympics"], "The Olympics are international sporting events held every four years, where athletes compete in many sports.",
+        ["india national symbols"], "India’s national flag is the tricolor, the national animal is the Bengal tiger, the national bird is the peacock, and the national flower is the lotus.",
+        ["national anthem"], "The national anthem of India is Jana Gana Mana, written by Rabindranath Tagore.",
+        ["national song"], "The national song of India is Vande Mataram, also written by Bankim Chandra Chatterjee.",
+        ["indian freedom fighters"], "Important Indian freedom fighters include Mahatma Gandhi, Bhagat Singh, Subhas Chandra Bose, Jawaharlal Nehru, and Rani Abbakka Chowta.",
+        ["constitution day"], "Constitution Day in India is celebrated on 26 November, commemorating the adoption of the Constitution.",
+        ["republic day"], "Republic Day in India is celebrated on 26 January to honor the day the Constitution came into effect.",
+        ["independence day"], "Independence Day in India is celebrated on 15 August, marking the end of British rule in 1947.",
+        ["hard work"], "Hard work, consistency, and revision are among the most important habits for learning and success.",
+        ["study habit"], "A good study habit includes regular revision, note-making, practice questions, and time management.",
+        ["focus"], "Focus means paying full attention to one task at a time. It improves learning and memory.",
+        ["memory"], "Memory is the brain’s ability to store and recall information. Revision, repetition, and understanding improve memory.",
+        ["english alphabet"], "The English alphabet has 26 letters. It includes vowels (A, E, I, O, U) and consonants.",
+        ["vowel", "consonant"], "Vowels are speech sounds where air flows freely; consonants are sounds that are blocked or modified in the mouth.",
+        ["noun"], "A noun is a naming word for a person, place, thing, or idea.",
+        ["pronoun"], "A pronoun is a word used instead of a noun, such as he, she, it, they.",
+        ["verb"], "A verb is an action word or a word that shows state, such as run, is, think, or write.",
+        ["adjective"], "An adjective describes a noun or pronoun, such as bright, tall, quick, or happy.",
+        ["adverb"], "An adverb describes a verb, adjective, or another adverb, such as quickly, very, and happily.",
+        ["preposition"], "A preposition shows the relationship between a noun and other words in a sentence, such as in, on, at, under, and with.",
+        ["sentence"], "A sentence is a complete thought containing a subject and a predicate.",
+        ["subject"], "The subject of a sentence tells who or what the sentence is about.",
+        ["predicate"], "The predicate tells what the subject does or is.",
+        ["analysis"], "Analysis means breaking down information into parts to understand it clearly.",
+        ["evaluation"], "Evaluation means judging the quality, value, or effectiveness of something based on criteria.",
+        ["states of matter"], "Matter exists in three main states: solid, liquid, and gas. Plasma is another state found in stars.",
+        ["solid", "liquid", "gas"], "Solids keep a fixed shape, liquids take the shape of the container, and gases spread out to fill the available space.",
+        ["temperature"], "Temperature is a measure of how hot or cold something is.",
+        ["pressure"], "Pressure is the force applied per unit area.",
+        ["electricity"], "Electricity is the flow of electric charge. It powers lights, devices, and machines.",
+        ["current"], "Electric current is the flow of electric charge through a conductor such as a wire.",
+        ["voltage"], "Voltage is the electrical force that pushes electric current through a circuit.",
+        ["resistance"], "Resistance is the opposition to current flow in a conductor or device.",
+        ["circuit"], "A circuit is a closed path through which current can flow.",
+        ["series circuit"], "In a series circuit, components are connected one after another so the same current flows through each.",
+        ["parallel circuit"], "In a parallel circuit, components are connected across the same voltage source, allowing separate branches to carry current.",
+        ["fuse"], "A fuse is a safety device that breaks the circuit when current becomes too high.",
+        ["battery"], "A battery stores chemical energy and converts it into electrical energy when connected in a circuit.",
+        ["solar panel"], "A solar panel converts sunlight into electrical energy using photovoltaic cells.",
+        ["wind turbine"], "A wind turbine captures kinetic energy from the wind and converts it into electricity.",
+        ["nuclear fusion"], "Nuclear fusion is the joining of small atomic nuclei into a larger one, releasing energy. It powers the Sun.",
+        ["periodic table"], "The periodic table organizes chemical elements by their atomic number and similar properties.",
+        ["metal", "nonmetal", "metalloid"], "Metals are good conductors of heat and electricity, nonmetals are poor conductors, and metalloids have mixed properties.",
+        ["carbon"], "Carbon is a chemical element essential for life. It forms the basis of organic molecules.",
+        ["oxygen"], "Oxygen is a gas needed by most living organisms for respiration.",
+        ["nitrogen"], "Nitrogen is a major gas in Earth’s atmosphere and is important for proteins and DNA.",
+        ["hydrogen"], "Hydrogen is the lightest chemical element and is the most abundant element in the universe.",
+        ["iron"], "Iron is a metal used in construction and in the hemoglobin of blood.",
+        ["gold"], "Gold is a precious metal valued for its rarity and because it does not corrode easily.",
+        ["silver"], "Silver is a shiny metal that is a good conductor and used in jewelry and electronics.",
+        ["sodium"], "Sodium is a soft reactive metal that is important in biology and chemistry.",
+        ["chlorine"], "Chlorine is a chemical element used in water purification and in the production of many compounds.",
+        ["earthquakes"], "Earthquakes happen when tectonic plates beneath Earth’s crust suddenly shift and release energy.",
+        ["tsunami"], "A tsunami is a large ocean wave caused by undersea earthquakes, volcanic activity, or landslides.",
+        ["aurora"], "Auroras are natural light displays in the sky, usually seen near the poles, caused by solar particles interacting with Earth’s atmosphere.",
+        ["weather", "forecast"], "Weather describes short-term atmospheric conditions such as rain, wind, temperature, and clouds. A forecast predicts future weather.",
+        ["monsoon"], "A monsoon is a seasonal wind pattern that brings heavy rainfall, especially in South Asia.",
+        ["desert"], "A desert is a dry region with very low rainfall and extreme temperature changes between day and night.",
+        ["forest"], "A forest is a large area covered mainly by trees and supporting many kinds of living things.",
+        ["savanna"], "A savanna is a grassy plain with scattered trees, often found in tropical regions.",
+        ["tundra"], "A tundra is a cold, treeless region with little vegetation and very low temperatures.",
+        ["wetland"], "A wetland is an area saturated with water, such as a marsh, swamp, or bog, which supports special plants and animals.",
+        ["india gate"], "India Gate is a war memorial in New Delhi built to honor Indian soldiers who died in World War I.",
+        ["gateway of india"], "The Gateway of India is a famous monument in Mumbai, built to commemorate the visit of King George V and Queen Mary in 1911.",
+        ["charminar"], "Charminar is a historic monument in Hyderabad, known for its architecture and cultural significance.",
+        ["taj mahal"], "The Taj Mahal in Agra is one of the most famous monuments in the world and a symbol of love and Mughal architecture.",
+        ["lotus"], "The lotus is India’s national flower and symbolizes purity and spiritual growth.",
+        ["bengal tiger"], "The Bengal tiger is India’s national animal and is found mainly in forests and grasslands.",
+        ["indian peacock"], "The Indian peacock is the national bird of India and is known for its colorful tail feathers.",
+        ["vande mataram", "jana gana mana"], "Vande Mataram is India’s national song, and Jana Gana Mana is the national anthem.",
+        ["sanskrit"], "Sanskrit is one of the oldest languages in the world and is deeply connected to Indian culture and literature.",
+        ["hindi"], "Hindi is one of the main official languages of India and is widely spoken across the country.",
+        ["english language"], "English is an international language used for communication, science, and business worldwide.",
+        ["world capitals"], "Examples: Paris is France, Tokyo is Japan, Rome is Italy, Berlin is Germany, Berlin is Germany, Madrid is Spain, Cairo is Egypt, Nairobi is Kenya.",
+        ["equator"], "The equator is an imaginary line around the center of Earth, dividing it into Northern and Southern Hemispheres.",
+        ["migration"], "Migration is the movement of people or animals from one place to another, often for food, work, or climate reasons.",
+        ["population"], "Population means the number of people living in a specific place or region.",
+        ["urban"], "Urban means related to cities and towns.",
+        ["rural"], "Rural means related to villages and countryside areas.",
+        ["flood"], "A flood is an overflow of water onto land that is usually dry, often due to heavy rain or river overflow.",
+        ["drought"], "A drought is a long period with little or no rainfall, causing water shortages and crop damage.",
+        ["agriculture"], "Agriculture is the cultivation of crops and rearing of animals for food and other products.",
+        ["irrigation"], "Irrigation is the artificial application of water to land to support crop growth.",
+        ["soil"], "Soil is the upper layer of Earth where plants grow. It contains minerals, organic matter, air, and water.",
+        ["erosion"], "Erosion is the wearing away of soil or rock by wind, water, or other natural forces.",
+        ["deforestation"], "Deforestation is the clearing of forests, often causing habitat loss and environmental damage.",
+        ["recycling"], "Recycling means reusing materials such as paper, plastic, metal, and glass to reduce waste.",
+        ["waste management"], "Waste management involves collecting, treating, and disposing of waste to reduce pollution and protect health.",
+        ["sustainable development"], "Sustainable development means meeting present needs without harming the ability of future generations to meet their own needs.",
+        ["battery", "electric car"], "Batteries store energy for later use. Electric cars use batteries or electric motors to run without gasoline.",
+        ["robotics"], "Robotics is the branch of technology related to the design, construction, and use of robots.",
+        ["satellite"], "A satellite is an object that orbits a planet or star. Artificial satellites are used for communication, weather, and scientific research.",
+        ["internet"], "The internet is a global network that connects computers and allows communication, information sharing, and online services.",
+        ["wifi"], "Wi-Fi is a wireless technology that allows devices to connect to the internet without physical cables.",
+        ["bluetooth"], "Bluetooth is a short-range wireless communication technology used for connecting devices like earphones, keyboards, and speakers.",
+        ["cybercrime"], "Cybercrime is illegal activity committed using computers or the internet, such as hacking, phishing, or data theft.",
+        ["phishing"], "Phishing is a cyberattack in which attackers trick people into revealing passwords or personal information.",
+        ["virus"], "A computer virus is malicious software designed to spread and damage files or systems.",
+        ["malware"], "Malware is any harmful software designed to damage, steal, or disrupt computer systems.",
+        ["network"], "A network is a system of connected devices that can communicate with each other.",
+        ["firewall"], "A firewall is a security system or software that filters network traffic and blocks unauthorized access.",
+        ["cloud"], "The cloud refers to internet-based computing resources where data and applications are stored remotely.",
+        ["smartphone"], "A smartphone is a mobile phone that performs many functions like internet browsing, messaging, cameras, and apps.",
+        ["digital camera"], "A digital camera converts light into electronic data and stores it as images or video.",
+        ["camera lens"], "A camera lens focuses light onto a sensor and helps create sharp images.",
+        ["screen"], "A screen is a display area that shows text, images, video, and user interfaces.",
+        ["microchip"], "A microchip is a tiny electronic component that stores or processes information in computers and devices.",
+        ["snow"], "Snow forms when water vapor in the atmosphere freezes into ice crystals and falls to Earth.",
+        ["hail"], "Hail consists of balls or lumps of ice that form in thunderstorms.",
+        ["lightning"], "Lightning is a sudden electrical discharge in the atmosphere, usually during a thunderstorm.",
+        ["thunder"], "Thunder is the sound caused by lightning heating the surrounding air very quickly.",
+        ["meteor"], "A meteor is a small piece of matter that enters Earth’s atmosphere and burns up, creating a streak of light often called a shooting star.",
+        ["comet"], "A comet is a small icy object that releases gas and dust as it approaches the Sun, forming a glowing tail.",
+        ["constellation"], "A constellation is a group of stars that appears to form a pattern in the sky.",
+        ["nebula"], "A nebula is a giant cloud of gas and dust in space where new stars can form.",
+        ["galaxy"], "A galaxy is a large collection of stars, gas, dust, and dark matter held together by gravity.",
+        ["universe"], "The universe includes all space, time, matter, and energy that exists.",
+        ["black hole"], "A black hole is a region in space with extremely strong gravity where even light cannot escape.",
+        ["solar eclipse"], "A solar eclipse happens when the Moon passes between the Sun and Earth and blocks some or all of the Sun’s light.",
+        ["lunar eclipse"], "A lunar eclipse happens when Earth comes between the Sun and the Moon, casting a shadow on the Moon.",
+        ["phase of moon"], "The Moon goes through phases because we see different parts of its sunlit half as it orbits Earth.",
+        ["fossil"], "A fossil is preserved remains or traces of ancient plants or animals found in rocks.",
+        ["paleontology"], "Paleontology is the study of fossils and ancient life.",
+        ["archeology"], "Archaeology is the study of ancient human history and culture through artifacts and sites.",
+        ["civilization"], "A civilization is a complex society with cities, government, writing, and culture.",
+        ["urbanisation"], "Urbanisation is the growth of cities and the movement of people from rural to urban areas.",
+        ["hydrogen bomb"], "A hydrogen bomb is a powerful nuclear weapon that uses fusion reactions to release vast amounts of energy.",
+        ["nuclear weapon"], "A nuclear weapon uses nuclear reactions to create a massive explosion.",
+        ["peace"], "Peace is a state of harmony and freedom from violence, conflict, or fear.",
+        ["education"], "Education is the process of learning knowledge, skills, values, and habits that help people grow and contribute to society.",
+        ["teacher"], "A teacher guides students in learning, understanding concepts, and developing habits and values.",
+        ["student"], "A student is a person who learns through study, teaching, or practice.",
+        ["school"], "A school is a place where students learn academic subjects, skills, and social behavior.",
+        ["college"], "A college is an institution for higher education after school.",
+        ["university"], "A university is a higher education institution that offers degrees and research opportunities.",
+        ["learning"], "Learning is the process of gaining knowledge, understanding, or skill through study or experience.",
+        ["memory retention"], "Memory retention improves with repetition, active recall, sleep, and understanding rather than simply reading passively.",
+        ["active recall"], "Active recall means testing yourself from memory instead of only re-reading notes.",
+        ["spaced repetition"], "Spaced repetition means revising material at increasing intervals to improve long-term memory.",
+        ["study planner"], "A study planner helps organize subjects, tasks, and revision time effectively.",
+        ["time management"], "Time management is the skill of planning and controlling how time is spent to achieve goals efficiently.",
+        ["exam strategy"], "Exam strategy includes understanding the pattern, preparing notes, practicing past questions, and managing time during the test.",
+        ["revision"], "Revision means reviewing previously learned material to strengthen memory and understanding.",
+        ["concept"], "A concept is an idea or principle that explains how something works or why something happens.",
+        ["principle"], "A principle is a fundamental rule or truth that guides understanding or behavior.",
+        ["fact"], "A fact is a true statement that can be checked or verified.",
+        ["opinion"], "An opinion is a personal view or belief rather than a verified fact.",
+        ["evidence"], "Evidence is information or proof that supports a claim or conclusion.",
+        ["observation"], "Observation is the act of carefully noticing and recording facts or events.",
+        ["experiment"], "An experiment is a controlled test used to learn or confirm how something works.",
+        ["hypothesis"], "A hypothesis is a possible explanation or prediction that can be tested.",
+        ["research"], "Research is the systematic study of a topic to find facts, understand patterns, or solve problems.",
+        ["data"], "Data is information collected for analysis, often in numbers, facts, or observations.",
+        ["graph"], "A graph is a visual representation of data, often using lines, bars, or points.",
+        ["chart"], "A chart is a visual way to show information clearly, like bar charts or pie charts.",
+        ["map"], "A map is a scaled drawing that shows places, roads, rivers, and features of a region.",
+        ["topography"], "Topography is the study of the shape and features of land surfaces.",
+        ["mount everest"], "Mount Everest is the highest mountain above sea level on Earth.",
+        ["k2"], "K2 is the second-highest mountain in the world and is one of the most difficult peaks to climb.",
+        ["dead sea"], "The Dead Sea is a salt lake between Jordan and Israel, known for its very high salt content and buoyancy.",
+        ["grand canyon"], "The Grand Canyon is a large canyon carved by the Colorado River in the United States.",
+        ["great wall"], "The Great Wall of China is one of the world’s largest and most famous man-made structures.",
+        ["pyramids"], "The pyramids are ancient structures in Egypt built as tombs or monuments.",
+        ["statue of liberty"], "The Statue of Liberty is a famous monument in New York Harbor symbolizing freedom and democracy.",
+        ["big ben"], "Big Ben is a famous clock tower in London, England.",
+        ["himalaya"], "The Himalayas are a major mountain range in Asia and include many of the world’s highest peaks.",
+        ["ganges"], "The Ganges is one of the major rivers of India and is considered sacred by many people.",
+        ["amazon"], "The Amazon is the largest river system in the world, flowing through South America.",
+        ["nile"], "The Nile is one of the world’s longest rivers and flows through northeastern Africa.",
+        ["yellow river"], "The Yellow River is an important river in China and is often called the cradle of Chinese civilization.",
+        ["southern ocean"], "The Southern Ocean surrounds Antarctica and is the fourth-largest ocean.",
+        ["global village"], "A global village is a concept describing how modern communication links people across the world more closely than ever before.",
+        ["human rights"], "Human rights are basic rights and freedoms considered to belong to every person, such as freedom, equality, and dignity.",
+        ["rule of law"], "The rule of law means that everyone is subject to the law, no matter how powerful they are.",
+        ["justice"], "Justice means fairness and the fair treatment of people under the law.",
+        ["equality"], "Equality means all people are treated fairly and have the same basic rights and opportunities.",
+        ["freedom"], "Freedom is the ability to act, speak, think, and live without unnecessary restrictions.",
+        ["ethics"], "Ethics is the study of what is right and wrong in human behavior.",
+        ["moral"], "Moral refers to principles of right and wrong that guide behavior.",
+        ["civil rights"], "Civil rights are rights that protect people from discrimination and guarantee equal treatment under the law.",
+        ["media literacy"], "Media literacy is the ability to understand, evaluate, and use information from media sources responsibly.",
+        ["digital literacy"], "Digital literacy is the ability to use computers, digital tools, and online systems safely and effectively.",
+        ["internet safety"], "Internet safety means using the internet carefully to avoid scams, harmful content, and personal data risks.",
+        ["privacy"], "Privacy means the right to keep personal information and personal life away from unwanted attention.",
+        ["security"], "Security means protection from danger, harm, theft, or damage.",
+        ["communication"], "Communication is the process of sharing ideas, information, and feelings with others.",
+        ["language"], "Language is a system of words and symbols used for communication between people.",
+        ["translation"], "Translation is the process of converting text or speech from one language into another.",
+        ["vocabulary"], "Vocabulary is the set of words known and used by a person or language community.",
+        ["synonym"], "A synonym is a word with a similar meaning to another word.",
+        ["antonym"], "An antonym is a word with the opposite meaning of another word.",
+        ["idiom"], "An idiom is a phrase whose meaning cannot be understood from the literal words alone.",
+        ["metaphor"], "A metaphor is a figure of speech that compares one thing to another without using like or as.",
+        ["simile"], "A simile compares two things using like or as.",
+        ["personification"], "Personification gives human qualities to non-human things or ideas.",
+        ["alliteration"], "Alliteration is the repetition of the same initial sound in nearby words.",
+        ["punctuation"], "Punctuation marks help organize writing and clarify meaning, such as commas, periods, and question marks.",
+        ["narrative"], "A narrative is a story or account of events, often told in sequence.",
+        ["fiction"], "Fiction is writing that is imaginative rather than factual.",
+        ["nonfiction"], "Nonfiction is writing based on facts, real events, or real people.",
+        ["novel"], "A novel is a long fictional story in prose.",
+        ["play"], "A play is a dramatic form of literature written to be performed on stage.",
+        ["drama"], "Drama is a genre of literature or performance focused on conflict and emotional action.",
+        ["poetry"], "Poetry uses rhythm, sound, and imagery to express emotions and ideas.",
+        ["science fiction"], "Science fiction is a genre that imagines future technology, space travel, and scientific possibilities.",
+        ["fantasy"], "Fantasy is a genre that includes magical elements and imaginary worlds.",
+        ["mystery"], "Mystery is a genre centered on solving a puzzle or crime.",
+        ["biography"], "A biography is the story of a person’s life written by someone else.",
+        ["autobiography"], "An autobiography is a story of a person’s own life.",
+        ["microorganism"], "A microorganism is a tiny living organism such as a bacterium, fungus, or protozoan.",
+        ["virus"], "A virus is a microscopic infectious agent that can multiply only inside living cells.",
+        ["bacteria"], "Bacteria are microscopic single-celled organisms that can be beneficial or harmful.",
+        ["fungi"], "Fungi include mushrooms, molds, and yeasts. Some help decompose matter while others can cause disease.",
+        ["photosynthesis equation"], "The basic equation of photosynthesis is carbon dioxide + water + sunlight → glucose + oxygen.",
+        ["pollution"], "Pollution is the introduction of harmful substances or energy into the environment.",
+        ["air pollution"], "Air pollution is contamination of the atmosphere by gases, particles, and smoke from human and natural sources.",
+        ["water pollution"], "Water pollution occurs when harmful substances contaminate rivers, lakes, oceans, or groundwater.",
+        ["land pollution"], "Land pollution happens when waste, chemicals, or trash contaminate the land.",
+        ["soil pollution"], "Soil pollution is the contamination of soil by chemicals, waste, or pesticides.",
+        ["sustainable living"], "Sustainable living means using resources in a way that preserves them for future generations.",
+        ["nutrition"], "Nutrition is the process of obtaining the necessary nutrients from food for growth, energy, and health.",
+        ["protein"], "Protein is a nutrient needed for building and repairing body tissues.",
+        ["carbohydrate"], "Carbohydrates are nutrients that give the body energy.",
+        ["fat"], "Fats provide energy and help absorb vitamins and protect organs.",
+        ["vitamin"], "Vitamins are substances needed in small amounts for health and normal body function.",
+        ["mineral"], "Minerals are natural substances needed for body functions, such as calcium, iron, and zinc.",
+        ["balanced diet"], "A balanced diet includes all major nutrients in the right amounts: carbohydrates, proteins, fats, vitamins, minerals, and water.",
+        ["hygiene"], "Hygiene means keeping yourself and your surroundings clean to prevent disease.",
+        ["exercise"], "Exercise is physical activity that helps maintain fitness, strengthen muscles, and improve health.",
+        ["sleep"], "Sleep is vital for memory, mood, growth, and overall health.",
+        ["mental health"], "Mental health is a person’s emotional, psychological, and social well-being.",
+        ["stress"], "Stress is the mental or physical pressure caused by demanding situations.",
+        ["importance of reading"], "Reading improves vocabulary, thinking, creativity, and understanding of the world.",
+        ["critical thinking"], "Critical thinking is the ability to reason clearly, analyze information, and form sound judgments.",
+        ["problem solving"], "Problem solving is the process of finding effective ways to answer a challenge or overcome an obstacle.",
+        ["teamwork"], "Teamwork means working together with others to achieve a shared goal.",
+        ["leadership"], "Leadership is the ability to guide, motivate, and support others toward a goal.",
+        ["communication skill"], "Communication skill means expressing ideas clearly and listening carefully to others.",
+        ["compassion"], "Compassion is showing kindness and empathy toward others.",
+        ["perseverance"], "Perseverance is continuing despite difficulties or setbacks.",
+        ["goal"], "A goal is a desired result or target that a person works toward.",
+        ["success"], "Success is the achievement of a desired result through effort, learning, and persistence.",
+        ["motivation"], "Motivation is the reason or desire that drives a person to act and keep working toward goals.",
+        ["self discipline"], "Self-discipline is the ability to control behavior, stay focused, and follow plans consistently.",
+        ["public speaking"], "Public speaking is the act of speaking clearly and confidently to an audience.",
+        ["debate"], "A debate is a formal discussion in which people present arguments for or against an issue.",
+        ["presentation"], "A presentation is a spoken or visual explanation of a topic to an audience.",
+        ["summary"], "A summary is a brief statement that gives the main ideas or key points of something.",
+        ["notes"], "Notes are quick written records used to remember important information from study or class.",
+        ["memory palace"], "A memory palace is a technique where you visualize information in a familiar place to help remember it.",
+        ["mnemonics"], "Mnemonics are memory aids, such as acronyms or phrases, that help recall information.",
+        ["brainstorming"], "Brainstorming is generating many ideas or solutions without judging them too early.",
+        ["creativity"], "Creativity is the ability to think in new ways and generate original ideas.",
+        ["innovation"], "Innovation is introducing new ideas, methods, or products that improve usefulness or value.",
+        ["science fair"], "A science fair is a school event where students present experiments, projects, and findings.",
+        ["lab"], "A laboratory is a place where experiments and scientific research are conducted.",
+        ["hypothesis test"], "A hypothesis test is a scientific method to check whether an explanation is supported by evidence.",
+        ["observation chart"], "An observation chart records what is seen during an experiment or natural event.",
+        ["graph paper"], "Graph paper is paper with printed grids used for drawing graphs, diagrams, and calculations.",
+        ["calculators"], "A calculator is a device or tool used for arithmetic and mathematical computations.",
+        ["measurements"], "Measurements are numbers that describe the size, quantity, or extent of something.",
+        ["length"], "Length is the measure of how long something is.",
+        ["mass"], "Mass is the amount of matter in an object.",
+        ["volume"], "Volume is the amount of space an object or substance occupies.",
+        ["density"], "Density is how much mass is contained in a given volume.",
+        ["temperature scale"], "Common temperature scales include Celsius, Fahrenheit, and Kelvin.",
+        ["celsius"], "Celsius is a temperature scale where water freezes at 0° and boils at 100°.",
+        ["fahrenheit"], "Fahrenheit is a temperature scale where water freezes at 32° and boils at 212°.",
+        ["thermal energy"], "Thermal energy is the energy produced by heat and related to the motion of particles.",
+        ["sound"], "Sound is a form of energy produced by vibrations that travel through air or other materials.",
+        ["echo"], "An echo is the reflection of sound that is heard again after it bounces off a surface.",
+        ["pitch"], "Pitch is how high or low a sound seems to be.",
+        ["loudness"], "Loudness refers to how strong or intense a sound is.",
+        ["light"], "Light is a form of energy that makes objects visible and travels in waves.",
+        ["shadow"], "A shadow is a dark shape formed when light is blocked by an object.",
+        ["mirror"], "A mirror reflects light and can form a clear image of an object.",
+        ["lens"], "A lens bends light to focus it, used in glasses, cameras, and microscopes.",
+        ["microscope"], "A microscope allows us to view very small objects such as cells and microorganisms.",
+        ["telescope"], "A telescope helps us observe distant objects in space, such as planets and stars.",
+        ["satellite image"], "A satellite image is a photograph of Earth taken from space for mapping, weather, and environmental study.",
+        ["weather satellite"], "A weather satellite monitors clouds, storms, temperature, and other atmospheric conditions from space.",
+        ["greenhouse gases"], "Greenhouse gases such as carbon dioxide, methane, and water vapor trap heat in the atmosphere, helping keep Earth warm.",
+        ["oxygen cycle"], "The oxygen cycle describes how oxygen moves through the atmosphere, biosphere, lithosphere, and hydrosphere.",
+        ["carbon cycle"], "The carbon cycle explains how carbon moves through the atmosphere, oceans, plants, animals, and soil.",
+        ["nitrogen cycle"], "The nitrogen cycle shows how nitrogen moves through the environment, as plants absorb it and animals use it in proteins and DNA.",
+        ["food web"], "A food web shows how many food chains are connected in an ecosystem.",
+        ["predator"], "A predator is an animal that hunts and eats other animals.",
+        ["prey"], "Prey is an animal that is hunted for food by another animal.",
+        ["extinction"], "Extinction happens when a species dies out completely.",
+        ["conservation"], "Conservation means protecting and managing natural resources and ecosystems to prevent loss and damage.",
+        ["species"], "A species is a group of living organisms that can reproduce and produce fertile offspring.",
+        ["population density"], "Population density is the number of people living in a given area.",
+        ["urban planning"], "Urban planning is the design and organization of land use, infrastructure, and services in cities.",
+        ["transportation"], "Transportation is the movement of people or goods from one place to another.",
+        ["railway"], "A railway is a network of tracks used by trains for transporting passengers and cargo.",
+        ["roads"], "Roads are transport routes for vehicles.",
+        ["ports"], "Ports are places where ships load and unload cargo and passengers.",
+        ["airports"], "Airports are facilities for the takeoff and landing of aircraft.",
+        ["bridge"], "A bridge is a structure built to cross obstacles such as rivers, valleys, or roads.",
+        ["dam"], "A dam is a barrier built across a river to hold back water for power generation, irrigation, or flood control.",
+        ["canal"], "A canal is a man-made waterway used for irrigation, navigation, or water transport.",
+        ["agriculture"], "Agriculture is the practice of cultivating plants and raising animals for food and other products.",
+        ["farming"], "Farming is the process of growing crops and caring for livestock.",
+        ["crop"], "A crop is a plant grown for food, fiber, or other useful products.",
+        ["harvest"], "Harvest is the process of gathering mature crops from the field.",
+        ["seasons"], "The four main seasons are spring, summer, autumn, and winter.",
+        ["winter"], "Winter is the coldest season in many regions, often with shorter daylight and snow in colder climates.",
+        ["summer"], "Summer is the warmest season, often with long days and high temperatures.",
+        ["autumn"], "Autumn is the season when leaves fall and many regions become cooler.",
+        ["spring"], "Spring is the season of growth, new leaves, and warmer weather.",
+        ["weather pattern"], "A weather pattern is a repeating arrangement of atmospheric conditions such as storms, winds, or heat waves.",
+        ["rainfall"], "Rainfall is the amount of rain that falls over a region in a period of time.",
+        ["humidity"], "Humidity is the amount of water vapor in the air.",
+        ["wind"], "Wind is moving air caused by differences in air pressure.",
+        ["pressure system"], "High- and low-pressure systems influence weather patterns and can cause different conditions.",
+        ["oxygen in blood"], "Hemoglobin in red blood cells carries oxygen from the lungs to the body tissues.",
+        ["blood groups"], "Blood groups include A, B, AB, and O, and are important for safe blood transfusions.",
+        ["immune system"], "The immune system protects the body from harmful microbes and disease.",
+        ["vaccination"], "Vaccination uses weakened or inactive parts of germs to help the body build immunity.",
+        ["antibiotic"], "An antibiotic is a medicine used to kill or stop the growth of bacteria.",
+        ["antibody"], "An antibody is a protein produced by the immune system to identify and neutralize harmful substances.",
+        ["virus infection"], "A virus infection occurs when a virus enters a living cell and replicates inside it.",
+        ["pandemic"], "A pandemic is a disease outbreak that spreads across many countries or around the world.",
+        ["epidemic"], "An epidemic is a disease outbreak that affects a large number of people in a specific region.",
+        ["health"], "Health is a state of physical, mental, and social well-being, not just the absence of disease.",
+        ["balanced lifestyle"], "A balanced lifestyle includes good nutrition, exercise, sleep, rest, and emotional well-being.",
+        ["nutrition"], "Nutrition is the process of taking in foods and nutrients needed for health and growth.",
+        ["protein"], "Protein helps build and repair body tissues and supports enzymes and hormones.",
+        ["vitamin c"], "Vitamin C helps the immune system and helps the body absorb iron.",
+        ["iron deficiency"], "Iron deficiency can cause tiredness and weakness because the body lacks enough hemoglobin.",
+        ["calcium"], "Calcium is important for strong bones and teeth.",
+        ["vitamin d"], "Vitamin D helps the body absorb calcium and supports bone health.",
+        ["zinc"], "Zinc supports immune function, wound healing, and proper growth.",
+        ["fiber"], "Fiber helps digestion and keeps the digestive system healthy.",
+        ["cholesterol"], "Cholesterol is a fatty substance needed for cell membranes and hormone production, but high levels can be harmful.",
+        ["healthy heart"], "A healthy heart pumps blood efficiently and is supported by exercise, diet, and not smoking.",
+        ["risk"], "Risk is the possibility of harm, loss, or unpleasant results.",
+        ["measurement"], "Measurement means determining the size, amount, or degree of a quantity.",
+        ["lab safety"], "Lab safety includes wearing protective gear, following instructions, and handling chemicals carefully.",
+        ["scientific method"], "The scientific method involves observation, hypothesis, experiments, analysis, and conclusion.",
+        ["inference"], "An inference is a logical conclusion based on evidence and reason.",
+        ["dependent variable"], "A dependent variable is the outcome measured in an experiment.",
+        ["independent variable"], "An independent variable is the factor changed by the experimenter in an experiment.",
+        ["control"], "A control is a standard condition used for comparison in an experiment.",
+        ["sample"], "A sample is a small group or set chosen to represent a larger population or object.",
+        ["survey"], "A survey collects information from people or groups to understand opinions or facts.",
+        ["statistics"], "Statistics is the branch of mathematics that deals with data collection, analysis, and interpretation.",
+        ["circle"], "A circle is a round shape in which all points are the same distance from the center.",
+        ["triangle"], "A triangle is a polygon with three sides and three angles.",
+        ["square"], "A square is a polygon with four equal sides and four right angles.",
+        ["rectangle"], "A rectangle is a four-sided shape with opposite sides equal and four right angles.",
+        ["polygon"], "A polygon is a closed 2D shape with straight sides.",
+        ["angle"], "An angle is the space between two intersecting lines or rays.",
+        ["acute angle"], "An acute angle is less than 90°.",
+        ["right angle"], "A right angle is exactly 90°.",
+        ["obtuse angle"], "An obtuse angle is greater than 90° but less than 180°.",
+        ["parallel lines"], "Parallel lines are lines that never meet and stay the same distance apart.",
+        ["perpendicular lines"], "Perpendicular lines meet at a right angle.",
+        ["symmetry"], "Symmetry means a shape or object looks the same after being folded or rotated in a certain way.",
+        ["area"], "Area is the amount of space inside a 2D shape.",
+        ["perimeter"], "Perimeter is the total distance around the outside of a shape.",
+        ["vocabulary words"], "A richer vocabulary improves reading, writing, speaking, and understanding across all subjects.",
+        ["language development"], "Language development grows through reading, speaking, listening, writing, and practice with new words.",
+        ["grammar rules"], "Grammar rules are patterns that help sentences make sense and sound correct.",
+        ["writing structure"], "A good writing structure includes introduction, main ideas, explanations, and conclusion.",
+        ["essay structure"], "An essay usually has an introduction, body paragraphs, and a conclusion.",
+        ["topic sentence"], "A topic sentence states the main idea of a paragraph.",
+        ["conclusion"], "A conclusion sums up the main points and closes the writing.",
+        ["thesis"], "A thesis is the main claim or argument of an essay.",
+        ["argument"], "An argument is a reasoned claim supported by evidence and logic.",
+        ["evidence"], "Evidence supports a claim and helps show it is convincing or true.",
+        ["critical reading"], "Critical reading means understanding, analyzing, and evaluating what you read rather than only accepting it.",
+        ["exam preparation"], "Exam preparation includes studying the syllabus, revising, practicing questions, and managing time.",
+        ["past paper"], "A past paper is a previous exam paper used for practice and revision.",
+        ["mock test"], "A mock test simulates an exam and helps students practice timing and revision.",
+        ["serious question"], "A serious question is a meaningful question requiring thoughtful learning and response.",
+        ["study routine"], "A study routine includes fixed times and priorities to support regular learning and progress.",
+        ["daily revision"], "Daily revision helps memory and keeps concepts active instead of forgotten.",
+        ["quick recall"], "Quick recall is the ability to bring information back from memory rapidly.",
+        ["effective learning"], "Effective learning involves understanding, practice, review, and application rather than just memorization.",
+        ["hard problem"], "A hard problem may require deeper reasoning, more practice, and several attempts before a solution is found.",
+        ["deep understanding"], "Deep understanding means seeing why a concept works, not just how to repeat it.",
+        ["concept clarity"], "Concept clarity means understanding the main idea behind a topic in a simple way.",
+        ["creative thinking"], "Creative thinking means generating new, useful, or unusual ideas.",
+        ["brainstorming"], "Brainstorming is a creative technique for generating many possible solutions or ideas.",
+        ["final answer"], "The final answer should be clear, correct, and based on the concept being asked about.",
+        ["solve"], "To solve means to find the correct answer or method to a problem.",
+        ["explain"], "To explain means to make a concept easy to understand by describing it simply and clearly.",
+        ["example"], "An example is a sample that shows how a rule or idea works in practice.",
+        ["application"], "Application means using a concept in a real situation or in a problem.",
+        ["definition"], "A definition is a clear explanation of what something means.",
+        ["explanation"], "An explanation describes how or why something works or happens.",
+        ["knowledge"], "Knowledge is facts, information, skills, and understanding gained through learning and experience.",
+        ["library"], "A library is a place where books, notes, resources, and learning materials are stored and used.",
+        ["study material"], "Study material includes textbooks, notes, worksheets, and other resources that help learning.",
+        ["online learning"], "Online learning uses the internet and digital tools to teach and study from anywhere.",
+        ["digital resources"], "Digital resources include websites, videos, apps, and online notes that support learning.",
+        ["education system"], "An education system includes schools, teachers, methods, and rules that organize learning in a country.",
+        ["school system"], "A school system includes the structure of classes, syllabus, exams, and teaching in a school system.",
+        ["teacher student relationship"], "A good teacher-student relationship is based on respect, communication, trust, and encouragement.",
+        ["learning environment"], "A learning environment is the setting that supports study, focus, and effective teaching.",
+        ["classroom"], "A classroom is a room where teaching and learning happen.",
+        ["homework"], "Homework is work assigned to students to do outside class time.",
+        ["assignment"], "An assignment is a task given to students to complete as part of learning.",
+        ["water"], "Water is essential for life. It helps regulate body temperature, transport nutrients, and support cells.",
+        ["hydration"], "Hydration means keeping the body supplied with enough water.",
+        ["mental ability"], "Mental ability includes memory, reasoning, thinking, decision-making, and attention.",
+        ["motivation"], "Motivation is the reason a person has for acting and working toward a goal.",
+        ["discipline"], "Discipline is self-control and the habit of following rules and plans consistently.",
+        ["focus"], "Focus is the ability to direct attention on one thing and ignore distractions.",
+        ["learning strategy"], "A learning strategy is a method that helps someone study more effectively and remember more.",
+        ["study notes"], "Study notes are short written points that summarize important ideas from lessons or books.",
+        ["flashcards"], "Flashcards are small cards used to practice remembering words, facts, or definitions.",
+        ["exam technique"], "Exam technique includes reading questions carefully, planning answers, and managing time well.",
+        ["time allocation"], "Time allocation means deciding how much time to spend on each task or section of an exam or study plan.",
+        ["goal setting"], "Goal setting means deciding what you want to achieve and planning how to reach it.",
+        ["self confidence"], "Self-confidence is belief in your own ability to learn, act, and succeed.",
+        ["problem solving"], "Problem solving means finding a method to answer a difficult question or overcome an obstacle.",
+        ["thinking"], "Thinking is the mental process of understanding, reasoning, and forming ideas.",
+        ["creative writing"], "Creative writing uses imagination and language to tell stories, describe scenes, or express emotions.",
+        ["descriptive writing"], "Descriptive writing creates a clear picture with sensory details.",
+        ["persuasive writing"], "Persuasive writing tries to convince the reader to agree with a point of view.",
+        ["informative writing"], "Informative writing explains facts and ideas clearly and accurately.",
+        ["study break"], "A study break helps the brain rest and improves concentration.",
+        ["long term memory"], "Long-term memory grows when concepts are reviewed repeatedly and connected to understanding.",
+        ["short term memory"], "Short-term memory is temporary and usually lasts for a short period without repetition.",
+        ["practical learning"], "Practical learning means applying theories to real examples, tasks, or experiments.",
+        ["visual learning"], "Visual learning uses diagrams, maps, charts, and images to understand concepts more easily.",
+        ["auditory learning"], "Auditory learning uses listening, speaking, and sound-based methods to learn effectively.",
+        ["kinesthetic learning"], "Kinesthetic learning uses movement, touch, and physical activity to understand and remember concepts.",
+        ["study method"], "A study method is a structured way to learn, practice, and revise a topic.",
+        ["multi modality"],  "Multi-modality means using several learning styles together, like reading, listening, drawing, and doing.",
+        ["student success"], "Student success comes from consistent effort, understanding, practice, time management, and motivation.",
+        ["learning growth"], "Learning growth means improving your knowledge and skill gradually through consistent effort.",
+        ["self improvement"], "Self-improvement means working on your abilities, habits, and mindset to become better over time.",
+        ["skills"], "Skills are abilities built through practice, study, and repeated effort.",
+        ["knowledge base"], "A knowledge base holds useful information that can be reviewed anytime for learning and problem-solving.",
+        ["2+2"],  "The answer is 4.",
+        ["4+4"],  "The answer is 8."   ["factor"], "A factor is a number that divides another number exactly.",
+        ["multiple"], "A multiple is a number that results from multiplying a number by a whole number.",
+        ["prime number"], "A prime number has exactly two factors: 1 and itself.",
+        ["composite number"], "A composite number has more than two factors.",
+        ["square number"], "A square number is the product of a number multiplied by itself.",
+        ["cube number"], "A cube number is a number multiplied by itself three times.",
+        ["average"], "The average is the sum of numbers divided by how many numbers there are.",
+        ["ratio"], "A ratio compares two quantities by division.",
+        ["proportion"], "A proportion is an equality between two ratios.",
+        ["percentage"], "A percentage is a fraction of 100, often used to express parts of a whole.",
+        ["decimal"], "A decimal is a number that uses a decimal point to show values less than one.",
+        ["fraction"], "A fraction represents a part of a whole or a ratio between two numbers.",
+        ["equation"], "An equation is a mathematical statement that shows two expressions are equal.",
+        ["inequality"], "An inequality shows that one expression is greater than or less than another.",
+        ["algebra"], "Algebra is a branch of mathematics that uses symbols and letters to represent numbers and relationships.",
+        ["geometry"], "Geometry is the study of shapes, sizes, and properties of space and figures.",
+        ["addition"], "Addition is the process of combining two or more numbers to get a total.",
+        ["subtraction"], "Subtraction is the process of taking one number away from another.",
+        ["multiplication"], "Multiplication is the process of adding a number to itself a certain number of times.",
+        ["division"], "Division is the process of splitting a number into equal parts or groups.",
+        ["exponent"], "An exponent indicates how many times a number is multiplied by itself.",
+        ["geography"], "Geography is the study of Earth's landscapes, environments, and how humans interact with them.",
+        ["economics"], "Economics is the study of how people produce, distribute, and consume goods and services.",
+        ["political science"], "Political science is the study of governments, political processes, and political behavior.",
+        ["sociology"], "Sociology is the study of society, social relationships, and social institutions.",
+        ["psychology"], "Psychology is the scientific study of the mind and behavior.",
+        ["philosophy"], "Philosophy is the study of fundamental questions about existence, knowledge, values, reason, and mind.",
+        ["art"], "Art is a diverse range of human activities that express creativity and imagination through visual, auditory, or performance mediums.",
+        ["music"], "Music is an art form that uses sound organized in time to express ideas and emotions.",
+        ["literature"], "Literature is written works considered to have artistic or intellectual value.",
+        ["theater"], "Theater is a collaborative form of performing arts that uses live performers to present stories in front of an audience.",
+        ["film"], "Film is a medium that uses moving images to tell stories or convey information.",
+        ["dance"], "Dance is a performing art form consisting of purposefully selected sequences of human movement."
+        ["mughal empire"], "The Mughal Empire was a powerful empire in India from the early 16th to the mid-19th century, known for its rich culture and architecture.",
+        ["british raj"], "The British Raj refers to the period of British rule over India from 1858 to 1947.",
+        ["independence movement"], "The independence movement in India was a series of efforts and campaigns that led to India's freedom from British rule in 1947.",
+        ["mahatma gandhi"], "Mahatma Gandhi was a leader of the Indian independence movement, known for his philosophy of nonviolent resistance.",
+        ["civil disobedience"], "Civil disobedience is the act of peacefully refusing to obey certain laws or commands as a form of protest.",
+        ["partition of india"], "The partition of India in 1947 divided British India into two independent dominions: India and Pakistan.",
+        ["gupta empire"], "The Gupta Empire was an ancient Indian empire that existed from approximately 320 to 550 CE, known for its achievements in arts, science, and literature.",
+        ["harappan civilization"], "The Harappan Civilization, also known as the Indus Valley Civilization, was an ancient civilization that flourished in the Indus River basin around 2500 BCE.",
+        ["vedic period"], "The Vedic Period refers to the era in ancient India when the Vedas, the oldest sacred texts of Hinduism, were composed, roughly between 1500 and 500 BCE.",
+        ["mauryan empire"], "The Mauryan Empire was a powerful ancient Indian empire that existed from 322 to 185 BCE, founded by Chandragupta Maurya.",
+        ["ashoka"], "Ashoka was a Mauryan emperor who ruled most of the Indian subcontinent and is remembered for his promotion of Buddhism and nonviolence.",
+        ["mughal architecture"], "Mughal architecture is a style of architecture developed by the Mughals in India, known for its large domes, minarets, and intricate ornamentation.",
+        ["taj mahal"], "The Taj Mahal is a white marble mausoleum in Agra, India, built by Emperor Shah Jahan in memory of his wife Mumtaz Mahal.",
+        ["red fort"], "The Red Fort is a historic fort in Delhi, India, built by Mughal Emperor Shah Jahan and known for its massive red sandstone walls.",
+        ["qutub minar"], "The Qutub Minar is a UNESCO World Heritage Site in Delhi, India, and is the tallest brick minaret in the world.",
+        ["hinduism"], "Hinduism is a major religion and cultural tradition of South Asia, characterized by a variety of beliefs, practices, and rituals.",
+        ["buddhism"], "Buddhism is a spiritual tradition and religion founded by Siddhartha Gautama (the Buddha) in ancient India, emphasizing the path to enlightenment.",
+        ["islam"], "Islam is a monotheistic Abrahamic religion founded in the 7th century CE by the Prophet Muhammad, based on the Quran.",
+        ["christianity"], "Christianity is a monotheistic religion based on the life and teachings of Jesus Christ, centered around the belief in his resurrection.",
+        ["tenali rama"], "Tenali Rama was a poet and advisor in the court of King Krishnadevaraya of the Vijayanagara Empire, known for his wit and intelligence.",
+        ["akbar"], "Akbar was a Mughal emperor who ruled India from 1556 to 1605, known for his policies of religious tolerance and administrative reforms.",
+        ["shah jahan"], "Shah Jahan was a Mughal emperor who ruled India from 1628 to 1658, famous for commissioning the Taj Mahal.",
+        ["birbal"], "Birbal was a witty advisor and minister in the court of Mughal Emperor Akbar, known for his cleverness and sense of humor."
+        ["shivaji"], "Shivaji was the founder of the Maratha Empire in western India, known for his military tactics and administration.",
+        ["tipu sultan"], "Tipu Sultan was the ruler of the Kingdom of Mysore in southern India, known for his resistance against British colonial forces.",
+        ["bhagat singh"], "Bhagat Singh was an Indian revolutionary and freedom fighter who played a key role in the struggle for India's independence from British rule.",
+        ["subhas chandra bose"], "Subhas Chandra Bose was an Indian nationalist leader who sought to free India from British rule through armed struggle and founded the Indian National Army.",
+        ["mahatma gandhi"], "Mahatma Gandhi was a leader of the Indian independence movement, known for his philosophy of nonviolent resistance and civil disobedience."
+        ["=", "equals"], "You can visit the Maths section from OMgpt-Extra learning platform for more information on mathematical operations.",
+        ["+", "plus"], "You can visit the Maths section from OMgpt-Extra learning platform for more information on mathematical operations.",
+        ["-", "minus"],"You can visit the Maths section from OMgpt-Extra learning platform for more information on mathematical operations.",
+        ["*", "times"], "You can visit the Maths section from OMgpt-Extra learning platform for more information on mathematical operations.",
+        ["/", "divided by"], "You can visit the Maths section from OMgpt-Extra learning platform for more information on mathematical operations.",
+        ["%", "modulus"], "You can visit the Maths section from OMgpt-Extra learning platform for more information on mathematical operations.",
+        ["^", "to the power of"], "You can visit the Maths section from OMgpt-Extra learning platform for more information on mathematical operations."
+        ["verb"], "A verb is a word that describes an action, occurrence, or state of being.",
+        ["noun"], "A noun is a word that represents a person, place, thing, or idea.",
+        ["adjective"], "An adjective is a word that describes or modifies a noun.",
+        ["adverb"], "An adverb is a word that modifies a verb, adjective, or other adverb, often indicating manner, time, place, or degree.",
+        ["pronoun"], "A pronoun is a word that takes the place of a noun in a sentence.",
+        ["preposition"], "A preposition is a word that shows the relationship between a noun (or pronoun) and other words in a sentence.",
+        ["conjunction"], "A conjunction is a word that connects words, phrases, or clauses in a sentence.",
+        ["interjection"], "An interjection is a word or phrase that expresses strong emotion or sudden feeling."
+        ["sentence"], "A sentence is a group of words that expresses a complete thought and contains a subject and a predicate.",
+        ["paragraph"], "A paragraph is a group of related sentences that discuss a single topic or idea.",
+        ["essay"], "An essay is a short piece of writing on a particular subject, often presenting the author's argument or perspective.",
+        ["story"], "A story is a narrative that describes events, characters, and experiences, often with a beginning, middle, and end.",
+        ["poem"], "A poem is a form of literary expression that uses rhythm, imagery, and language to evoke emotions and ideas."
+        ["hindi"], "Hindi is an Indo-Aryan language spoken primarily in India and is one of the official languages of the country.",
+        ["english"], "English is a West Germanic language that originated in England and is widely spoken around the world.",
+        ["spanish"], "Spanish is a Romance language that originated in the Iberian Peninsula and is spoken in many countries worldwide.",
+        ["french"], "French is a Romance language spoken primarily in France and other Francophone regions around the world.",
+        ["german"], "German is a West Germanic language spoken mainly in Germany, Austria, and parts of Switzerland.",
+        ["chinese"], "Chinese is a group of related languages spoken primarily in China, with Mandarin being the most widely spoken variety.",
+        ["japanese"], "Japanese is an East Asian language spoken primarily in Japan, known for its unique writing system and grammar.",
+        ["korean"], "Korean is an East Asian language spoken primarily in South Korea and North Korea, with its own unique script called Hangul."
+        ["olympiad"], "An Olympiad is a competition or contest, often in academics or sports, where participants demonstrate their skills and knowledge.",
+        ["science olympiad"], "A Science Olympiad is a competition that tests students' knowledge and skills in various scientific disciplines.",
+        ["math olympiad"], "A Math Olympiad is a competition that challenges students to solve complex mathematical problems and demonstrate their problem-solving abilities.",
+        ["coding olympiad"], "A Coding Olympiad is a competition where participants solve programming challenges and demonstrate their coding skills.",
+        ["robotics olympiad"], "A Robotics Olympiad is a competition where participants design, build, and program robots to complete specific tasks."
+        ["chess"], "Chess is a strategic board game played between two players, involving skillful planning and tactics.",
+        ["harry potter"], "Harry Potter is a series of fantasy novels written by J.K. Rowling, following the story of a young wizard and his friends."
+        ["15th August"], "15th August is celebrated as Independence Day in India, marking the country's independence from British rule in 1947.",
+        ["26th January"], "26th January is celebrated as Republic Day in India, commemorating the adoption of the Constitution of India in 1950.",
+        ["5th September"], "5th September is celebrated as Teachers' Day in India, honoring the birth anniversary of Dr. Sarvepalli Radhakrishnan, a renowned educator and philosopher."
+        ["pet"], "A pet is an animal kept for companionship and enjoyment, such as a dog, cat, or bird.",
+        ["dog"], "A dog is a domesticated mammal known for its loyalty and companionship to humans.",
+        ["cat"], "A cat is a small domesticated mammal known for its independence and playful behavior.",
+        ["fish"], "Fish are aquatic animals that live in water and are often kept as pets in aquariums.",
+        ["bird"], "Birds are warm-blooded vertebrates with feathers, wings, and beaks, many of which can fly."
+        ["hiv"], "HIV (Human Immunodeficiency Virus) is a virus that attacks the immune system and can lead to AIDS if not treated.",
+        ["aids"], "AIDS (Acquired Immunodeficiency Syndrome) is a condition caused by HIV that weakens the immune system, making it difficult to fight infections.",
+        ["cancer"], "Cancer is a disease characterized by the uncontrolled growth and spread of abnormal cells in the body.",
+        ["diabetes"], "Diabetes is a chronic condition that affects how the body processes blood sugar (glucose).",
+        ["heart disease"], "Heart disease refers to various conditions that affect the heart's structure and function, often leading to heart attacks or other complications."
+        ["drug abuse"], "Drug abuse is the harmful or excessive use of drugs, leading to physical, mental, and social problems.",
+        ["alcoholism"], "Alcoholism is a chronic disease characterized by an inability to control alcohol consumption despite negative consequences.",
+        ["mental health"], "Mental health refers to a person's emotional, psychological, and social well-being, affecting how they think, feel, and behave."
+        ["topper"], "A topper is a student who achieves the highest marks or ranks in an examination or academic performance.",
+        ["ranker"], "A ranker is a student who secures a high position or rank in an examination or competition.",
+        ["scholarship"], "A scholarship is a financial award given to students based on academic achievement, talent, or other criteria to support their education."
+        ["backbenchers"], "Backbenchers are students who sit at the back of the classroom, often associated with being less attentive or engaged in class activities.",
+        ["class monitor"], "A class monitor is a student appointed to assist the teacher in maintaining discipline and order in the classroom.",
+        ["prefect"], "A prefect is a student given certain responsibilities and authority to help manage school activities and maintain discipline."
+        ["debate"], "A debate is a formal discussion where participants present arguments for or against a specific topic.",
+        ["quiz"], "A quiz is a short test or competition that assesses knowledge on various subjects.",
+        ["group study"], "Group study involves students working together to learn, discuss, and solve problems collaboratively."
+        ["mun"], "MUN (Model United Nations) is an educational simulation where students role-play as delegates to the United Nations and engage in discussions on global issues.",
+        ["science fair"], "A science fair is an event where students present their scientific projects and experiments to showcase their research and findings.",
+        ["sports day"], "Sports day is an event organized by schools or institutions where students participate in various athletic competitions and activities."
+        ["heats day"], "Heats day is a preliminary round in sports competitions where participants compete to qualify for the final rounds.",
+        ["finals day"], "Finals day is the concluding round of a competition where the top participants compete for the championship or awards."
+        ["cricket"], "Cricket is a bat-and-ball sport played between two teams, popular in countries like India, England, and Australia.",
+        ["football"], "Football (soccer) is a team sport played with a spherical ball, where the objective is to score goals by getting the ball into the opposing team's net.",
+        ["basketball"], "Basketball is a team sport where players aim to score points by shooting a ball through the opponent's hoop.",
+        ["tennis"], "Tennis is a racket sport played individually or in pairs, where players hit a ball over a net to score points.",
+        ["badminton"], "Badminton is a racquet sport played with a shuttlecock, where players aim to hit it over the net and into the opponent's court."
+        ["olympics"], "The Olympics is a global multi-sport event held every four years, featuring athletes from around the world competing in various sports.",
+        ["paralympics"], "The Paralympics is a major international multi-sport event for athletes with disabilities, held shortly after the Olympic Games.",
+        ["commonwealth games"], "The Commonwealth Games is an international multi-sport event involving athletes from the Commonwealth of Nations.",
+        ["asian games"], "The Asian Games is a continental multi-sport event held every four years among athletes from all over Asia."
+        ["asia cup"], "The Asia Cup is a cricket tournament held among Asian countries, organized by the Asian Cricket Council.",
+        ["fifa world cup"], "The FIFA World Cup is an international football (soccer) tournament held every four years, featuring national teams from around the world.",
+        ["icc cricket world cup"], "The ICC Cricket World Cup is an international cricket championship organized by the International Cricket Council, held every four years."
+      
+      ];
+
+      for (let i = 0; i < knowledge.length; i += 2) {
+        const keys = Array.isArray(knowledge[i]) ? knowledge[i] : [knowledge[i]];
+        const answer = knowledge[i + 1];
+
+        if (keys.some(k => {
+          if (k === "hello" || k === "hi" || k === "hey") {
+            return text === k || text.startsWith(`${k} `);
+          }
+          return text.includes(k);
+        })) {
+          return answer;
+        }
+      }
+
+      return "I don’t have enough knowledge on that topic yet.";
+    }
+
+    function sendMessage() {
+      const value = chatInput.value.trim();
+      if (!value) return;
+
+      addMessage(value, "user");
+      chatInput.value = "";
+
+      setTimeout(() => {
+        const reply = replyMap(value);
+        addMessage(reply, "bot", true);
+      }, 200);
+    }
+
+    newChatBtn.addEventListener("click", resetChat);
+    sendBtn.addEventListener("click", sendMessage);
+
+    chatInput.addEventListener("keydown", event => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        sendMessage();
+      }
+    });
+
+    document.querySelectorAll(".chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        chatInput.value = chip.dataset.prompt;
+        sendMessage();
+      });
+    });
+
+   resetChat();
+  </script>
+</body>
+</html>
