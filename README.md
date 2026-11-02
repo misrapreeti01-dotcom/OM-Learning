@@ -23,8 +23,3 @@ This prototype features an interactive dashboard designed to organize learning m
 *   **Static Mocking:** All chatbot and quick-learn responses are completely simulated client-side. No live user data is transmitted to third-party APIs.
 Use code with caution.
 
-Why This Protects Your Project
-
-• The Disclaimer Flag: Automated bots scan for safety. Having the word Disclaimer along with phrases like “no corporate backing” and “does not collect user data” helps signal to safety algorithms that your repository is low-risk.
-• Clarifying the "Tech Stack": Explicitly stating that the project is built using “pure front-end interactivity” and “static mocking” helps security reviewers understand that your input boxes are just for show and aren't harvesting tokens or passwords.
-Would you like me to help you write the code for a clean disclaimer banner that you can place directly at the top of your actual website HTML file as well?
